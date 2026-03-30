@@ -1,7 +1,4 @@
-"use client"
-
 import { useState } from "react"
-
 interface Course {
   title: string
   provider: string
@@ -10,7 +7,6 @@ interface Course {
   duration: string
   url: string
 }
-
 export default function SkillPathFinder() {
   const [query, setQuery] = useState("")
   const [price, setPrice] = useState("all")
@@ -18,21 +14,17 @@ export default function SkillPathFinder() {
   const [courses, setCourses] = useState<Course[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
-
   async function searchCourses() {
     if (!query.trim()) {
       setError("Please enter a skill or career goal")
       return
     }
-
     setLoading(true)
     setError("")
     setCourses([])
-
     try {
       const res = await fetch(`/api/search?query=${encodeURIComponent(query)}&price=${price}&level=${level}`)
       const data = await res.json()
-
       if (data.error) {
         setError(data.error)
         return
@@ -45,13 +37,11 @@ export default function SkillPathFinder() {
       setLoading(false)
     }
   }
-
   function handleKeyDown(e: React.KeyboardEvent) {
     if (e.key === "Enter") {
       searchCourses()
     }
   }
-
   return (
     <main className="min-h-screen bg-slate-900 text-white">
       <div className="container mx-auto px-4 py-10 text-center">
@@ -66,7 +56,6 @@ export default function SkillPathFinder() {
             onKeyDown={handleKeyDown}
             className="w-full max-w-md rounded border border-slate-600 bg-slate-800 px-4 py-2 text-white placeholder-slate-400 focus:border-blue-500 focus:outline-none sm:w-auto"
           />
-
           <select
             value={price}
             onChange={(e) => setPrice(e.target.value)}
@@ -76,7 +65,6 @@ export default function SkillPathFinder() {
             <option value="free">Free</option>
             <option value="paid">Paid</option>
           </select>
-
           <select
             value={level}
             onChange={(e) => setLevel(e.target.value)}
@@ -87,7 +75,6 @@ export default function SkillPathFinder() {
             <option value="intermediate">Intermediate</option>
             <option value="advanced">Advanced</option>
           </select>
-
           <button
             onClick={searchCourses}
             disabled={loading}
@@ -96,17 +83,14 @@ export default function SkillPathFinder() {
             {loading ? "Searching..." : "Search"}
           </button>
         </div>
-
         {error && (
           <div className="mb-6 rounded bg-red-900/50 px-4 py-3 text-red-200">
             {error}
           </div>
         )}
-
         {courses.length === 0 && !loading && !error && (
           <p className="text-slate-400">Enter a skill to find relevant courses</p>
         )}
-
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {courses.map((course, index) => (
             <div
