@@ -1,0 +1,15 @@
+Course Finder
+
+Now this website, Course Finder, is a simple modern web app that was simply made with Next.js, React, and also css, which really helps the users easily find the courses they are looking for based on prices and level of education. This website is made to be really easy so that the user does not really need to type a lot of information.
+
+General overview
+
+Course finder is a frontend design app that helps people wanting to learn to be able to view courses that can help a particular skill they have and can also see the price and review too.
+
+I used Next.js, TypeScript, Tailwind CSS, React Hooks, and also radix ui to familiarize myself with a variety of ways of making websites and for simplification for the user.
+
+The API used fetches these courses from Coursera.
+
+Features
+
+For one, it searches and filters courses that relate to the skill you typed. It is clean and responds properly without much delay. I also built it with Typescript because I am trying to familiarize myself with it, and it has proven to be simple and effective.
